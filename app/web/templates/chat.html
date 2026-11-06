@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat | Mensajes</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="chat-body">
+  <aside>
+    <header class="side-head">
+      <strong>{{ username }}</strong>
+      <form method="post" action="{{ url_for('logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button class="ghost" type="submit">Salir</button>
+      </form>
+    </header>
+    <form id="agregar">
+      <label for="nuevo-contacto">Agregar contacto</label>
+      <input id="nuevo-contacto" maxlength="20" placeholder="usuario" autocomplete="off">
+      <button type="submit">Agregar</button>
+    </form>
+    <p id="aviso" class="alert error" hidden></p>
+    <h3>Contactos</h3>
+    <ul id="contactos">
+      {% for contact in contacts %}
+        <li>
+          <button type="button" class="contact" data-user="{{ contact.username }}">
+            {{ contact.username }}
+          </button>
+        </li>
+      {% else %}
+        <li class="muted">Agrega un contacto para chatear.</li>
+      {% endfor %}
+    </ul>
+  </aside>
+  <section class="thread">
+    <header id="titulo">
+      <span id="titulo-texto">Selecciona un contacto</span>
+      <button type="button" id="btn-llamar" disabled>Videollamada</button>
+    </header>
+    <div id="mensajes"></div>
+    <form id="enviar">
+      <input id="texto" maxlength="1000" placeholder="Escribe un mensaje" disabled>
+      <button type="submit" disabled>Enviar</button>
+    </form>
+  </section>
+  <div id="llamada" class="call-overlay" hidden>
+    <p id="call-status">Conectando…</p>
+    <div class="videos">
+      <video id="remoto" autoplay playsinline></video>
+      <video id="local" autoplay muted playsinline></video>
+    </div>
+    <button type="button" id="btn-colgar">Colgar</button>
+  </div>
+  <div id="entrada" class="call-banner" hidden>
+    <span id="entrada-texto"></span>
+    <button type="button" id="btn-aceptar">Aceptar</button>
+    <button type="button" id="btn-rechazar">Rechazar</button>
+  </div>
+  <script src="{{ url_for('static', filename='chat.js') }}"></script>
+  <script src="{{ url_for('static', filename='call.js') }}"></script>
+</body>
+</html>

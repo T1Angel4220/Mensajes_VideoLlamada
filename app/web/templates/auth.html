@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if modo == 'registro' %}Registro{% else %}Ingreso{% endif %} | Mensajes</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>Mensajes</h1>
+    <p class="muted">Sistema de envío y recepción de texto</p>
+    <h2>{% if modo == 'registro' %}Crear cuenta{% else %}Iniciar sesión{% endif %}</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <p class="alert {{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label for="username">Usuario</label>
+      <input id="username" name="username" required maxlength="20" autocomplete="username">
+      <label for="password">Contraseña</label>
+      <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password">
+      <button type="submit">{% if modo == 'registro' %}Registrarme{% else %}Entrar{% endif %}</button>
+    </form>
+    {% if modo == 'registro' %}
+      <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+    {% else %}
+      <p>¿Eres nuevo? <a href="{{ url_for('registro') }}">Crea una cuenta</a></p>
+    {% endif %}
+  </main>
+</body>
+</html>

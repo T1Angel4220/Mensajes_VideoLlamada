@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+coverage.xml
+.secret_key
+mensajes.db
+.scannerwork/
+.sonar_token.txt
+.idea/
+.vscode/
