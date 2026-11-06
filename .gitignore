@@ -1,12 +1,68 @@
+# ==============================================================================
+# Git Ignore - Sistema de Mensajes y Videollamadas P2P
+# ==============================================================================
+
+# Entornos virtuales (Python virtual environments)
 .venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Bytecode y compilados de Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+
+# Secretos, credenciales y variables de entorno (PORTAFOLIO SEGURO)
+.env
+.env.*
+!.env.example
+*.env
+*.secret
+*.secret_key
+.secret_key
+*secret*
+*token*
+*.token
+.sonar_token*
+*.key
+*.pem
+*.cert
+*.crt
+
+# Bases de datos SQLite y temporales locales
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+mensajes.db
+
+# Pruebas unitarias y reportes de cobertura (pytest & coverage)
 .pytest_cache/
 .coverage
+.coverage.*
 coverage.xml
-.secret_key
-mensajes.db
+nosetests.xml
+htmlcov/
+coverage_html_report/
+
+# SonarQube Scanner temporales
 .scannerwork/
-.sonar_token.txt
+
+# Configuraciones de IDEs y editores
 .idea/
 .vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de registro / Logs
+*.log
