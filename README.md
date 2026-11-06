@@ -364,7 +364,3 @@ docker run --rm `
 - `POST /api/llamadas/<call_id>/rechazar` — Rechaza una llamada entrante.
 
 ---
-
-## 📄 Licencia
-
-Este proyecto fue desarrollado con fines académicos y de portafolio profesional en ciberseguridad y desarrollo de software seguro. Distribuido bajo la Licencia MIT.
